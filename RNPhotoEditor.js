@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
-import { ViewPropTypes, NativeModules, Platform } from "react-native";
+import { ViewPropTypes, NativeModules, NativeEventEmitter, Platform } from "react-native";
 import PropTypes from "prop-types";
 
-const { RNPhotoEditor } = NativeModules;
+const RNPhotoEditor = new NativeEventEmitter(NativeModules.RNPhotoEditor);
 
 class PhotoEditor extends PureComponent {
   static propTypes = {
