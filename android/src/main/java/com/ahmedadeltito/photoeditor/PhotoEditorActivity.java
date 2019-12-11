@@ -43,7 +43,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.view.WindowManager;
 
 import com.ahmedadeltito.photoeditor.widget.SlidingUpPanelLayout;
 import com.ahmedadeltito.photoeditorsdk.BrushDrawingView;
@@ -68,6 +67,7 @@ import com.yalantis.ucrop.UCrop;
 import com.yalantis.ucrop.UCropActivity;
 
 import ui.photoeditor.R;
+import android.view.WindowManager;
 
 public class PhotoEditorActivity extends AppCompatActivity implements View.OnClickListener, OnPhotoEditorSDKListener {
 
@@ -82,7 +82,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     private TextView undoTextView, undoTextTextView, doneDrawingTextView, eraseDrawingTextView;
     private SlidingUpPanelLayout mLayout;
     private View topShadow;
-    private RelativeLayout topShadowRelativeLayout;
+    private LinearLayout topShadowRelativeLayout;
     private View bottomShadow;
     private RelativeLayout bottomShadowRelativeLayout;
     private ArrayList<Integer> colorPickerColors;
@@ -105,10 +105,10 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_editor);
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+      getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        selectedImagePath = getIntent().getExtras().getString("selectedImagePath");	
-        if (selectedImagePath.contains("content://")) {
+        selectedImagePath = getIntent().getExtras().getString("selectedImagePath");
+        if (selectedImagePath.contains("content://") || selectedImagePath.contains("file://")) {
             selectedImagePath = getPath(Uri.parse(selectedImagePath));
         }
         Log.d("PhotoEditorSDK", "Selected image path: " + selectedImagePath);
@@ -138,26 +138,25 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
         BrushDrawingView brushDrawingView = (BrushDrawingView) findViewById(R.id.drawing_view);
         drawingViewColorPickerRecyclerView = (RecyclerView) findViewById(R.id.drawing_view_color_picker_recycler_view);
         parentImageRelativeLayout = (RelativeLayout) findViewById(R.id.parent_image_rl);
-        TextView closeTextView = (TextView) findViewById(R.id.close_tv);
-        TextView addTextView = (TextView) findViewById(R.id.add_text_tv);
-        TextView addPencil = (TextView) findViewById(R.id.add_pencil_tv);
+        ImageView closeTextView = (ImageView) findViewById(R.id.close_tv);
+        ImageView addTextView = (ImageView) findViewById(R.id.add_text_tv);
+        ImageView addPencil = (ImageView) findViewById(R.id.add_pencil_tv);
         RelativeLayout deleteRelativeLayout = (RelativeLayout) findViewById(R.id.delete_rl);
         TextView deleteTextView = (TextView) findViewById(R.id.delete_tv);
-        TextView addImageEmojiTextView = (TextView) findViewById(R.id.add_image_emoji_tv);
-        TextView addCropTextView = (TextView) findViewById(R.id.add_crop_tv);
-        TextView saveTextView = (TextView) findViewById(R.id.save_tv);
-        TextView saveTextTextView = (TextView) findViewById(R.id.save_text_tv);
-        undoTextView = (TextView) findViewById(R.id.undo_tv);
-        undoTextTextView = (TextView) findViewById(R.id.undo_text_tv);
+        ImageView addImageEmojiTextView = (ImageView) findViewById(R.id.add_image_emoji_tv);
+//        TextView addCropTextView = (TextView) findViewById(R.id.add_crop_tv);
+        ImageView saveTextView = (ImageView) findViewById(R.id.save_tv);
+//        TextView saveTextTextView = (TextView) findViewById(R.id.save_text_tv);
+//        undoTextView = (TextView) findViewById(R.id.undo_tv);
+//        undoTextTextView = (TextView) findViewById(R.id.undo_text_tv);
         doneDrawingTextView = (TextView) findViewById(R.id.done_drawing_tv);
         eraseDrawingTextView = (TextView) findViewById(R.id.erase_drawing_tv);
-        TextView clearAllTextView = (TextView) findViewById(R.id.clear_all_tv);
-        TextView clearAllTextTextView = (TextView) findViewById(R.id.clear_all_text_tv);
-        TextView goToNextTextView = (TextView) findViewById(R.id.go_to_next_screen_tv);
+
+//        ImageView goToNextTextView = (ImageView) findViewById(R.id.go_to_next_screen_tv);
         photoEditImageView = (ImageView) findViewById(R.id.photo_edit_iv);
         mLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
         topShadow = findViewById(R.id.top_shadow);
-        topShadowRelativeLayout = (RelativeLayout) findViewById(R.id.top_parent_rl);
+        topShadowRelativeLayout = (LinearLayout) findViewById(R.id.top_parent_rl);
         bottomShadow = findViewById(R.id.bottom_shadow);
         bottomShadowRelativeLayout = (RelativeLayout) findViewById(R.id.bottom_parent_rl);
 
@@ -166,15 +165,15 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
         photoEditImageView.setImageBitmap(rotatedBitmap);
 
-        closeTextView.setTypeface(newFont);
-        addTextView.setTypeface(newFont);
-        addPencil.setTypeface(newFont);
-        addImageEmojiTextView.setTypeface(newFont);
-        addCropTextView.setTypeface(fontAwesome);
-        saveTextView.setTypeface(newFont);
-        undoTextView.setTypeface(newFont);
-        clearAllTextView.setTypeface(newFont);
-        goToNextTextView.setTypeface(newFont);
+//        closeTextView.setTypeface(newFont);
+//        addTextView.setTypeface(newFont);
+//        addPencil.setTypeface(newFont);
+//        addImageEmojiTextView.setTypeface(newFont);
+//        addCropTextView.setTypeface(fontAwesome);
+//        saveTextView.setTypeface(newFont);
+//        undoTextView.setTypeface(newFont);
+//        clearAllTextView.setTypeface(newFont);
+//        goToNextTextView.setTypeface(newFont);
         deleteTextView.setTypeface(newFont);
 
         final List<Fragment> fragmentsList = new ArrayList<>();
@@ -229,18 +228,18 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
         closeTextView.setOnClickListener(this);
         addImageEmojiTextView.setOnClickListener(this);
-        addCropTextView.setOnClickListener(this);
+//        addCropTextView.setOnClickListener(this);
         addTextView.setOnClickListener(this);
         addPencil.setOnClickListener(this);
         saveTextView.setOnClickListener(this);
-        saveTextTextView.setOnClickListener(this);
-        undoTextView.setOnClickListener(this);
-        undoTextTextView.setOnClickListener(this);
+//        saveTextTextView.setOnClickListener(this);
+//        undoTextView.setOnClickListener(this);
+//        undoTextTextView.setOnClickListener(this);
         doneDrawingTextView.setOnClickListener(this);
         eraseDrawingTextView.setOnClickListener(this);
-        clearAllTextView.setOnClickListener(this);
-        clearAllTextTextView.setOnClickListener(this);
-        goToNextTextView.setOnClickListener(this);
+//        clearAllTextView.setOnClickListener(this);
+//        clearAllTextTextView.setOnClickListener(this);
+//        goToNextTextView.setOnClickListener(this);
 
         ArrayList<Integer> intentColors = (ArrayList<Integer>) getIntent().getExtras().getSerializable("colorPickerColors");
 
@@ -279,10 +278,10 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             if (hiddenControls.get(i).toString().equalsIgnoreCase("text")) {
                 addTextView.setVisibility(View.INVISIBLE);
             }
-            if (hiddenControls.get(i).toString().equalsIgnoreCase("clear")) {
-                clearAllTextView.setVisibility(View.INVISIBLE);
-                clearAllTextTextView.setVisibility(View.INVISIBLE);
-            }
+//            if (hiddenControls.get(i).toString().equalsIgnoreCase("clear")) {
+//                clearAllTextView.setVisibility(View.INVISIBLE);
+//                clearAllTextTextView.setVisibility(View.INVISIBLE);
+//            }
             if (hiddenControls.get(i).toString().equalsIgnoreCase("crop")) {
 
             }
@@ -290,7 +289,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
                 addPencil.setVisibility(View.INVISIBLE);
             }
             if (hiddenControls.get(i).toString().equalsIgnoreCase("save")) {
-                saveTextTextView.setVisibility(View.INVISIBLE);
+//                saveTextTextView.setVisibility(View.INVISIBLE);
                 saveTextView.setVisibility(View.INVISIBLE);
             }
             if (hiddenControls.get(i).toString().equalsIgnoreCase("share")) {
@@ -299,9 +298,9 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             if (hiddenControls.get(i).toString().equalsIgnoreCase("sticker")) {
                 addImageEmojiTextView.setVisibility(View.INVISIBLE);
             }
-            if (hiddenControls.get(i).toString().equalsIgnoreCase("crop")) {
-                addCropTextView.setVisibility(View.INVISIBLE);
-            }
+//            if (hiddenControls.get(i).toString().equalsIgnoreCase("crop")) {
+//                addCropTextView.setVisibility(View.INVISIBLE);
+//            }
         }
     }
 
@@ -531,6 +530,7 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra("imagePath", selectedImagePath);
                 setResult(Activity.RESULT_OK, returnIntent);
+              Log.d("PhotoEditorSDK", "Result path: " + selectedImagePath);
 
                 finish();
             }
@@ -585,26 +585,27 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
             onBackPressed();
         } else if (v.getId() == R.id.add_image_emoji_tv) {
             mLayout.setPanelState(SlidingUpPanelLayout.PanelState.EXPANDED);
-        } else if(v.getId() == R.id.add_crop_tv) {
-            System.out.println("CROP IMAGE DUD");
-            startCropping();
+//        } else if(v.getId() == R.id.add_crop_tv) {
+//            System.out.println("CROP IMAGE DUD");
+//            startCropping();
         } else if (v.getId() == R.id.add_text_tv) {
             openAddTextPopupWindow("", -1);
         } else if (v.getId() == R.id.add_pencil_tv) {
             updateBrushDrawingView(true);
         } else if (v.getId() == R.id.done_drawing_tv) {
             updateBrushDrawingView(false);
-        } else if (v.getId() == R.id.save_tv || v.getId() == R.id.save_text_tv) {
+        } else if (v.getId() == R.id.save_tv ) {
             returnBackWithSavedImage();
-        } else if (v.getId() == R.id.clear_all_tv || v.getId() == R.id.clear_all_text_tv) {
-            clearAllViews();
-        } else if (v.getId() == R.id.undo_text_tv || v.getId() == R.id.undo_tv) {
-            undoViews();
+//        } else if (v.getId() == R.id.clear_all_tv || v.getId() == R.id.clear_all_text_tv) {
+//            clearAllViews();
+//        } else if (v.getId() == R.id.undo_text_tv || v.getId() == R.id.undo_tv) {
+//            undoViews();
         } else if (v.getId() == R.id.erase_drawing_tv) {
             eraseDrawing();
-        } else if (v.getId() == R.id.go_to_next_screen_tv) {
-            returnBackWithUpdateImage();
         }
+//        else if (v.getId() == R.id.go_to_next_screen_tv) {
+//            returnBackWithUpdateImage();
+//        }
     }
 
     @Override
@@ -614,10 +615,10 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onAddViewListener(ViewType viewType, int numberOfAddedViews) {
-        if (numberOfAddedViews > 0) {
-            undoTextView.setVisibility(View.VISIBLE);
-            undoTextTextView.setVisibility(View.VISIBLE);
-        }
+//        if (numberOfAddedViews > 0) {
+//            undoTextView.setVisibility(View.VISIBLE);
+//            undoTextTextView.setVisibility(View.VISIBLE);
+//        }
         switch (viewType) {
             case BRUSH_DRAWING:
                 Log.i("BRUSH_DRAWING", "onAddViewListener");
@@ -637,10 +638,10 @@ public class PhotoEditorActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onRemoveViewListener(int numberOfAddedViews) {
         Log.i(TAG, "onRemoveViewListener");
-        if (numberOfAddedViews == 0) {
-            undoTextView.setVisibility(View.GONE);
-            undoTextTextView.setVisibility(View.GONE);
-        }
+//        if (numberOfAddedViews == 0) {
+//            undoTextView.setVisibility(View.GONE);
+//            undoTextTextView.setVisibility(View.GONE);
+//        }
     }
 
     @Override

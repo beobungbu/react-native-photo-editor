@@ -7,9 +7,10 @@
         android:id="@+id/color_picker_view"
         android:layout_width="30dp"
         android:layout_height="30dp"
+      android:background="@drawable/layout_radius"
         android:layout_alignParentTop="true"
         android:layout_marginStart="6dp"
         android:layout_marginBottom="6dp"
-        android:background="@color/white" />
+         />
 
 </RelativeLayout>

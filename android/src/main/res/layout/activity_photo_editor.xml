@@ -97,67 +97,56 @@
                 android:layout_alignParentTop="true"
                 android:background="@drawable/fading_shadow" />
 
-            <RelativeLayout
-                android:id="@+id/top_parent_rl"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/top_shadow"
-                android:layout_alignTop="@+id/top_shadow"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp">
+          <LinearLayout
+            android:id="@+id/top_parent_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="right"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
 
-                <TextView
-                    android:id="@+id/close_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:text="@string/ic_close"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+            <ImageView
+              android:id="@+id/close_tv"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentTop="true"
+              android:paddingTop="15dp"
+              android:paddingBottom="15dp"
+              android:paddingLeft="15dp"
+              android:paddingRight="18dp"
+              android:scaleType="centerCrop"
+              android:src="@drawable/exit" />
 
-                <TextView
-                    android:id="@+id/add_text_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    android:padding="15dp"
-                    android:text="@string/ic_text"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+            <ImageView
+              android:id="@+id/add_text_tv"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/close_tv"
+              android:padding="15dp"
+              android:scaleType="centerCrop"
+              android:src="@drawable/text" />
 
-                <TextView
-                    android:id="@+id/add_pencil_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/add_text_tv"
-                    android:padding="15dp"
-                    android:text="@string/ic_draw"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+            <ImageView
+              android:id="@+id/add_pencil_tv"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/add_text_tv"
+              android:padding="15dp"
+              android:scaleType="centerCrop"
+              android:src="@drawable/color" />
 
-                <TextView
-                    android:id="@+id/add_crop_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/add_pencil_tv"
-                    android:padding="15dp"
-                    android:text="@string/ic_crop"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
+            <ImageView
+              android:id="@+id/add_image_emoji_tv"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/add_pencil_tv"
+              android:padding="15dp"
+              android:scaleType="centerCrop"
+              android:src="@drawable/emoji" />
 
-                <TextView
-                    android:id="@+id/add_image_emoji_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toStartOf="@+id/add_crop_tv"
-                    android:padding="15dp"
-                    android:text="@string/ic_images"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp" />
-
-
-            </RelativeLayout>
+          </LinearLayout>
 
             <View
                 android:id="@+id/bottom_shadow"
@@ -168,6 +157,7 @@
 
             <RelativeLayout
                 android:id="@+id/bottom_parent_rl"
+                android:layout_centerInParent="true"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/bottom_shadow"
@@ -175,95 +165,38 @@
                 android:paddingLeft="26dp"
                 android:paddingRight="26dp">
 
-                <TextView
+
+<!--              <TextView-->
+<!--                android:id="@+id/save_tv"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignEnd="@+id/save_text_tv"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/ic_save"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:textSize="25sp" />-->
+
+<!--              <TextView-->
+<!--                android:id="@+id/save_text_tv"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_below="@+id/save_tv"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginTop="4dp"-->
+<!--                android:text="@string/save"-->
+<!--                android:textColor="#FFFFFF"-->
+<!--                android:textSize="15sp" />-->
+
+                <ImageView
                     android:id="@+id/save_tv"
+                    android:src="@drawable/save"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/save_text_tv"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center"
-                    android:text="@string/ic_save"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/save_text_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/save_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/save"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/clear_all_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/clear_all_text_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/save_tv"
-                    android:gravity="center"
-                    android:text="@string/ic_clear_all"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:id="@+id/clear_all_text_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/clear_all_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/save_tv"
-                    android:text="@string/clear_all"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/undo_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignEnd="@+id/undo_text_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/clear_all_tv"
-                    android:gravity="center"
-                    android:text="@string/ic_clear_all"
-                    android:textColor="#FFFFFF"
-                    android:textSize="25sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/undo_text_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/clear_all_tv"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_toEndOf="@+id/clear_all_tv"
-                    android:text="@string/undo"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15sp"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/go_to_next_screen_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="@string/ic_continue"
-                    android:textColor="#FFFFFF"
-                    android:textSize="40sp" />
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop" />
 
             </RelativeLayout>
 
@@ -271,7 +204,7 @@
                 android:id="@+id/delete_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
                 android:padding="20dp"
                 android:visibility="gone">
 
