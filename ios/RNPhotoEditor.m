@@ -1,7 +1,5 @@
 
 #import "RNPhotoEditor.h"
-#define ON_PRESS_SETTING @"onPressSetting"
-#define ON_PRESS_SAVE @"onPressSave"
 
 @implementation RNPhotoEditor
 
@@ -11,35 +9,10 @@
 }
 RCT_EXPORT_MODULE()
 
-- (NSArray<NSString *> *)supportedEvents {
-    return @[
-             ON_PRESS_SETTING,
-             ON_PRESS_SAVE
-             ];
-}
-
 NSString *_editImagePath = nil;
 
 RCTResponseSenderBlock _onDoneEditing = nil;
 RCTResponseSenderBlock _onCancelEditing = nil;
-
-- (void)didSelectSettingWithImage:(UIImage *)image {
-    @try {
-        [self sendEventWithName:ON_PRESS_SETTING body:@{}];
-    }
-    @catch(NSException * e) {
-        
-    }
-}
-
-- (void)didselectSaveWithImage:(UIImage *)image {
-    @try {
-        [self sendEventWithName:ON_PRESS_SAVE body:@{}];
-    }
-    @catch(NSException * e) {
-        
-    }
-}
 
 - (void)doneEditingWithImage:(UIImage *)image {
     if (_onDoneEditing == nil) return;
